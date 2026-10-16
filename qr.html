@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Code: Shift Sign In / Out</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      color: #1b1f23;
+      background: #fff;
+    }
+    .page { max-width: 640px; margin: 0 auto; padding: 40px 20px; }
+    h1 { font-size: 2.4rem; margin: 0 0 8px; }
+    p.sub { font-size: 1.2rem; margin: 0 0 24px; color: #444; }
+    #qr svg { width: 100%; max-width: 480px; height: auto; display: block; margin: 0 auto; }
+    .url { font-family: ui-monospace, Consolas, monospace; font-size: 0.95rem; word-break: break-all; margin-top: 16px; }
+    button {
+      margin-top: 24px; font: inherit; font-weight: 700; padding: 12px 28px;
+      border-radius: 10px; border: 2px solid #1f5f8b; background: #1f5f8b; color: #fff; cursor: pointer;
+    }
+    button:focus-visible { outline: 3px solid #f0a500; outline-offset: 2px; }
+    @media print {
+      button, .no-print { display: none; }
+      .page { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Scan to sign in / out</h1>
+    <p class="sub">Clinic &amp; Admin shifts</p>
+    <div id="qr" role="img" aria-label="QR code linking to the sign in and sign out page"></div>
+    <p class="url" id="url"></p>
+    <button type="button" onclick="window.print()">Print</button>
+    <p class="no-print">Tip: tape this up where volunteers arrive. Test-scan it with your phone first.</p>
+  </div>
+
+  <script src="vendor/qrcode.js"></script>
+  <script>
+    (function () {
+      // Target is this site's index page, e.g. https://user.github.io/attendance/
+      var target = location.origin + location.pathname.replace(/qr\.html$/, '');
+
+      var q = qrcode(0, 'M'); // auto size, medium error correction
+      q.addData(target);
+      q.make();
+      document.getElementById('qr').innerHTML = q.createSvgTag(8, 4);
+      document.getElementById('url').textContent = target;
+    })();
+  </script>
+</body>
+</html>

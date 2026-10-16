@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f5f8b">
+  <title>Shift Sign In / Out</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="card" id="main">
+    <h1>Shift Sign In / Out</h1>
+
+    <!-- Step 1: location check -->
+    <section id="location-section" aria-labelledby="location-heading">
+      <h2 id="location-heading" class="visually-hidden">Location check</h2>
+      <div id="location-status" class="status" role="status" aria-live="polite">
+        Checking your location&hellip;
+      </div>
+      <button type="button" id="check-location-btn" class="btn btn-secondary" hidden>
+        Check my location
+      </button>
+    </section>
+
+    <!-- Step 2: the form (hidden until location is verified) -->
+    <form id="attendance-form" novalidate hidden>
+      <div class="field">
+        <label for="name">Your name</label>
+        <select id="name" name="name" required>
+          <option value="">Select your name&hellip;</option>
+        </select>
+      </div>
+
+      <fieldset class="field">
+        <legend>Shift type</legend>
+        <div class="choice-group">
+          <label class="choice">
+            <input type="radio" name="shift" value="Clinic" required>
+            <span>Clinic</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="shift" value="Admin">
+            <span>Admin</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Sign in or out</legend>
+        <div class="choice-group">
+          <label class="choice">
+            <input type="radio" name="action" value="Sign In" required>
+            <span>Sign In</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="action" value="Sign Out">
+            <span>Sign Out</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <button type="button" id="toggle-manual" class="link-btn" aria-expanded="false" aria-controls="manual-section">
+          Different time? (forgot to sign in/out)
+        </button>
+        <div id="manual-section" hidden>
+          <label for="manual-time">Actual time</label>
+          <input type="datetime-local" id="manual-time" name="manualTime">
+          <label for="reason">Reason (required)</label>
+          <textarea id="reason" name="reason" rows="2" maxlength="500"
+                    placeholder="e.g. Forgot to sign in when I arrived"></textarea>
+          <button type="button" id="clear-manual" class="link-btn">Use current time instead</button>
+        </div>
+      </div>
+
+      <div id="form-errors" class="errors" role="alert" aria-live="assertive"></div>
+
+      <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- Warning confirmation -->
+    <section id="warning-section" hidden aria-labelledby="warning-heading">
+      <h2 id="warning-heading">Are you sure?</h2>
+      <p id="warning-message" class="status status-warn"></p>
+      <div class="btn-row">
+        <button type="button" id="warning-confirm" class="btn btn-primary">Submit anyway</button>
+        <button type="button" id="warning-cancel" class="btn btn-secondary">Go back</button>
+      </div>
+    </section>
+
+    <!-- Success screen -->
+    <section id="success-section" hidden aria-labelledby="success-heading" tabindex="-1">
+      <h2 id="success-heading">Recorded</h2>
+      <dl id="success-details" class="details"></dl>
+      <button type="button" id="done-btn" class="btn btn-primary">Done</button>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="lib.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
