@@ -6,7 +6,7 @@
 (function (root) {
   var CONFIG = {
     // Paste your Apps Script Web app URL here (Deploy -> Manage deployments).
-    SCRIPT_URL: 'https://script.google.com/a/macros/ufl.edu/s/AKfycbyObvo6g_tacDrsfEOG4TJUjdsId8V91giKPlz8isI80181KxFbS5BNUu4W4qtqUf8/exec',
+    SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyObvo6g_tacDrsfEOG4TJUjdsId8V91giKPlz8isI80181KxFbS5BNUu4W4qtqUf8/exec',
 
     // 29°36'21.4"N 82°21'57.3"W
     CENTER: { lat: 29.6059444, lng: -82.3659167 },
