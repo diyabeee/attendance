@@ -47,6 +47,7 @@
       'Aadarsh Arul',
       'Youssef Isshak',
       'Diya Behal',
+      'Tara Fenelon',
       'Jessica Vargo'
     ]
   };
